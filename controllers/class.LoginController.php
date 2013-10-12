@@ -17,7 +17,7 @@ class LoginController extends BaseController
         $this->entity->password = $this->interface->getPassword();
     }
     
-    public function getValidation()
+    public function validation()
     {
         $this->acceptLoginId();
         $this->acceptPassword();

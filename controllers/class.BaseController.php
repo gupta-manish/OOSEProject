@@ -23,7 +23,7 @@ class BaseController {
         if(file_exists($filename))
         {
             require $filename;
-            $entityname = ucfirst($this->pageName);
+            $entityname = ucfirst($this->pageName).'Entity';
             
             $this->entity = new $entityname();
         }

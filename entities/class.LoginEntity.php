@@ -1,6 +1,6 @@
 <?php
 
-class Login extends BaseEntity
+class LoginEntity extends BaseEntity
 {
     var $loginId;
     var $password;

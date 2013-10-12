@@ -67,7 +67,7 @@
                             </ul>
                         <?php else: ?>
                         <ul class="nav pull-right">
-                            <form class="navbar-form pull-right" action ="<?php echo BASE_URL;?>login/getValidation" method ="post">
+                            <form class="navbar-form pull-right" action ="<?php echo BASE_URL;?>login/validation" method ="post">
                                 <input class="span2" type="text" placeholder="Login Id" name ="loginId">
                                 <input class="span2" type="password" placeholder="Password" name="password">
                                 <input type="submit" class="btn btn-primary" value ="Sign in">
