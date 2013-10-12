@@ -5,6 +5,7 @@ class LoginEntity extends BaseEntity
     var $loginId;
     var $password;
     var $userData;
+    var $userLoginData;
     
     function __construct() 
     {
@@ -19,10 +20,16 @@ class LoginEntity extends BaseEntity
         
         $sth->execute(array(':username'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
         
-        $this->userData = $sth->fetch();
+        //$this->userData = $sth->fetch();
         
         if($sth->rowCount()==1)
         {
+            $this->userLoginData = $sth->fetch();
+            $sth2 = $this->prepare("SELECT * 
+                                FROM :table
+                                WHERE loginId = :loginId");
+            $sth2->execute(array(':table'=>$this->userLoginData['uesrTable'],':loginId'=>$this->loginId));
+            $this->userData = $sth2->fetch();
             return 1;
         }
         else 

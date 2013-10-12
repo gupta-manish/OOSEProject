@@ -38,7 +38,7 @@ class RegisterController extends BaseController
         $this->entity->hotelAddress = $this->interface->getHotelAddress();
     }
     
-    public function acceptEmailAddress()
+    public function acceptEmail()
     {
         $this->entity->email = $this->interface->getEmail();
     }
@@ -66,7 +66,7 @@ class RegisterController extends BaseController
         $this->acceptFirstName();
         $this->acceptLastName();
         $registration = $this->entity->registerTraveller();
-        
+        $this->userRegistration($registration);
     }
     
     public function hotelRegistrationValidation()
@@ -75,6 +75,7 @@ class RegisterController extends BaseController
         $this->acceptHotelName();
         $this->acceptHotelAddress();
         $registration = $this->entity->registerHotel();
+        $this->userRegistration($registration);
     }
     
     public function travelOperatorRegisterValidation()
@@ -83,6 +84,24 @@ class RegisterController extends BaseController
         $this->acceptTravelOperatorName();
         $this->acceptTravelOperatorAddress();
         $registration = $this->entity->registeTravelOperator();
+        $this->userRegistration($registration);
+    }
+    
+    private function userRegistration($registration)
+    {
+        if($registration == 1)
+        {
+            Session::start();
+            Session::set(LOGGED_IN,TRUE);
+            Session::set(USER_LOGIN_DATA,$this->entity->userLoginData);
+            Session::set(USER_DATA,$this->entity->userData);
+            header('Location:'.BASE_URL);
+        }
+        else
+        {
+            Session::destroy();
+            header('Location:'.BASE_URL.'register');
+        }
     }
 }
 ?>

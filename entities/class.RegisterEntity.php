@@ -18,5 +18,6 @@ class RegisterEntity extends BaseEntity
     }
     
     
+    
 }
 ?>
