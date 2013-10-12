@@ -28,6 +28,16 @@ class RegisterController extends BaseController
         $this->entity->password = $this->interface->getPassword();
     }
     
+    public function acceptHotelName()
+    {
+        
+    }
+    
+    public function accept()
+    {
+        
+    }
+    
     
 }
 ?>
