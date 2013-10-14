@@ -21,8 +21,8 @@
         <link rel="stylesheet" href="<?php echo PUBLIC_URL?>css/main.css">
 
         <script src="<?php echo PUBLIC_URL?>js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>
-        <script>window.jQuery || document.write('<script src="<?php echo PUBLIC_URL?>js/vendor/jquery-1.10.1.js"><\/script>')</script>
+      <!--  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script> -->
+        <script>window.jQuery || document.write('<script src="<?php echo PUBLIC_URL?>js/vendor/jquery-1.10.1.js"><\/script>');</script>
 
         <script src="<?php echo PUBLIC_URL?>js/vendor/bootstrap.min.js"></script>
 
@@ -62,7 +62,7 @@
                         </ul>
                         <?php if(Session::get('loggedIn') == TRUE): ?>
                             <ul class="nav pull-right">
-                                <li><a href="<?php echo BASE_URL?>"><?php echo $this->user['firstName'];?></a></li>
+                                <li><a href="<?php echo BASE_URL?>"><?php echo $this->user['loginId'];?></a></li>
                                 <li><a href="<?php echo BASE_URL; ?>dashboard/logout" >Log Out</a></li>
                             </ul>
                         <?php else: ?>

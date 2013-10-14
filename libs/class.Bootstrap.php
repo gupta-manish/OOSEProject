@@ -29,15 +29,19 @@ class Bootstrap
             return;
         } 
        // echo "Controller Name -> ".$con_name;
+        
         $con = new $con_name(); 
         if(isset($url[1]))
         {
             $con_func = $url[1];
-            if(method_exists($con,$con_func))
-            {
+            
+           // if(method_exists($con,$con_func))
+            //{
+               // echo $con_name."->".$con_func."()";
                 $con->$con_func();
-            }
+            //}
         }
+        $con->interface->render($con->pageName);
         
     }
     
@@ -74,6 +78,7 @@ class Bootstrap
     private function giveError()
     {
         $this->error = new ErrorController();
+        $this->error->interface->render($this->error->pageName);
     }
 }
 ?>

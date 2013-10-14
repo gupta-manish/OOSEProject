@@ -55,18 +55,19 @@ class RegisterController extends BaseController
     
     public function register()
     {
-        $this->acceptEmailAddress();
+        $this->acceptEmail();
         $this->acceptLoginId();
         $this->acceptPassword();
     }
     
-    public function travellerRegisterValidation()
+    public function travellerRegistrationValidation()
     {
+        echo "vijeoivje";
         $this->register();
         $this->acceptFirstName();
         $this->acceptLastName();
         $registration = $this->entity->registerTraveller();
-        $this->userRegistration($registration);
+        $this->completeRegistration($registration);
     }
     
     public function hotelRegistrationValidation()
@@ -75,19 +76,20 @@ class RegisterController extends BaseController
         $this->acceptHotelName();
         $this->acceptHotelAddress();
         $registration = $this->entity->registerHotel();
-        $this->userRegistration($registration);
+        $this->completeRegistration($registration);
     }
     
-    public function travelOperatorRegisterValidation()
+    public function travelOperatorRegistrationValidation()
     {
+       // echo "wlevhoweveovhine";
         $this->register();
         $this->acceptTravelOperatorName();
         $this->acceptTravelOperatorAddress();
         $registration = $this->entity->registeTravelOperator();
-        $this->userRegistration($registration);
+        $this->completeRegistration($registration);
     }
     
-    private function userRegistration($registration)
+    private function completeRegistration($registration)
     {
         if($registration == 1)
         {
@@ -99,8 +101,11 @@ class RegisterController extends BaseController
         }
         else
         {
+           
             Session::destroy();
-            header('Location:'.BASE_URL.'register');
+            header('Location:'.BASE_URL.'error');
+           echo "wvgrvrgr";
+            
         }
     }
 }

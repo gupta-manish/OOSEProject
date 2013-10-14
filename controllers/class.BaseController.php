@@ -38,7 +38,7 @@ class BaseController {
             $interfacename = ucfirst($this->pageName).'Interface';
             
             $this->interface = new $interfacename();
-            $this->interface->render($this->pageName);
+            //$this->interface->render($this->pageName);
         }
     }
     

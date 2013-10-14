@@ -15,7 +15,7 @@ class RegisterInterface extends BaseInterface
     
     public function getPassword()
     {
-        return $_POST['password'];
+        return $_POST['pass'];
     }
     
     public function getFirstName()
