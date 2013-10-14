@@ -8,7 +8,13 @@ class Session {
 
     public static function get($key){
         if(isset($_SESSION[$key]))
-        return $_SESSION[$key];
+        {
+            return $_SESSION[$key];
+        }
+        else
+        {
+            return FALSE;
+        }
     }
     
     public static function set($key,$value)
@@ -25,6 +31,11 @@ class Session {
     public static function destroy()
     {
         session_destroy();
+    }
+    
+    public static function isAlreadySet($key)
+    {
+        return isset($_SESSION[$key]);
     }
 }
 

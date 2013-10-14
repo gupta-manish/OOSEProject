@@ -104,7 +104,7 @@ class RegisterController extends BaseController
            
             Session::destroy();
             header('Location:'.BASE_URL.'error');
-           echo "wvgrvrgr";
+          // echo "wvgrvrgr";
             
         }
     }

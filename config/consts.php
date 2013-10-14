@@ -10,6 +10,7 @@ define('WEBSITE_NAME','OOSEProject');
 define('LOGGED_IN','loggedIn');
 define('USER_DATA','userdata');
 define('USER_LOGIN_DATA','userlogindata');
+define('USER','user');
 
 
 ?>

@@ -35,11 +35,11 @@ class Bootstrap
         {
             $con_func = $url[1];
             
-           // if(method_exists($con,$con_func))
-            //{
+            if(method_exists($con,$con_func))
+            {
                // echo $con_name."->".$con_func."()";
                 $con->$con_func();
-            //}
+            }
         }
         $con->interface->render($con->pageName);
         
@@ -67,6 +67,18 @@ class Bootstrap
         if(isset($_GET['url']))
         {
             $url = rtrim($_GET['url'],'/');
+            if(Session::get(LOGGED_IN) == TRUE && ($url==='register'||$url==='login'))
+            {
+                $url = 'dashboard';
+            }
+            return $url;
+        }
+        else if(Session::get(LOGGED_IN) == TRUE)
+        {
+            $url = 'dashboard';
+            require 'Interface/class.UserInterface.php';
+            Session::set(USER,new UserInterface());
+            //echo Session::get(USER)->getName()."Veevevevev";
             return $url;
         }
         else

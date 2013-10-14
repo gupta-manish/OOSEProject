@@ -48,10 +48,11 @@ class RegisterEntity extends BaseEntity
             
             
             $sth = $this->db->prepare("SELECT * 
-                                    FROM users
-                                    WHERE username = :loginId AND pass = :pass");
-            $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
-            $this->userLoginData = $sth->fetch();
+                                FROM users
+                                WHERE loginId = :loginId AND password = :pass");
+        
+        $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
+        $this->userLoginData = $sth->fetch();
             
             $sth2 = $this->db->prepare("SELECT * 
                                 FROM travellers
@@ -91,10 +92,11 @@ class RegisterEntity extends BaseEntity
             
             
             $sth = $this->db->prepare("SELECT * 
-                                    FROM users
-                                    WHERE username = :loginId AND pass = :pass");
-            $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
-            $this->userLoginData = $sth->fetch();
+                                FROM users
+                                WHERE loginId = :loginId AND password = :pass");
+        
+        $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
+        $this->userLoginData = $sth->fetch();
             
             $sth2 = $this->db->prepare("SELECT * 
                                 FROM hotels
@@ -134,10 +136,11 @@ class RegisterEntity extends BaseEntity
             
             
             $sth = $this->db->prepare("SELECT * 
-                                    FROM users
-                                    WHERE username = :loginId AND pass = :pass");
-            $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
-            $this->userLoginData = $sth->fetch();
+                                FROM users
+                                WHERE loginId = :loginId AND password = :pass");
+        
+        $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
+        $this->userLoginData = $sth->fetch();
             
             $sth2 = $this->db->prepare("SELECT * 
                                 FROM travelOperators

@@ -36,5 +36,11 @@ class LoginController extends BaseController
             header('Location:'.BASE_URL.'login');
         }
     }
+    
+    public function logOut()
+    {
+        Session::destroy();
+        header('Location:'.BASE_URL.'login');
+    }
 }
 ?>

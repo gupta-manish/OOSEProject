@@ -62,8 +62,8 @@
                         </ul>
                         <?php if(Session::get(LOGGED_IN) == TRUE): ?>
                             <ul class="nav pull-right">
-                                <li><a href="<?php echo BASE_URL?>"><?php echo Session::get(USER_DATA)['loginId'];?></a></li>
-                                <li><a href="<?php echo BASE_URL; ?>dashboard/logout" >Log Out</a></li>
+                                <li><a href="<?php echo BASE_URL?>"><?php echo Session::get(USER)->getName();?></a></li>
+                                <li><a href="<?php echo BASE_URL; ?>login/logOut" >Log Out</a></li>
                             </ul>
                         <?php else: ?>
                         <ul class="nav pull-right">
