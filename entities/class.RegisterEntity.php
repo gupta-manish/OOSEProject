@@ -128,7 +128,7 @@ class RegisterEntity extends BaseEntity
                  ':pass'=>$this->encrypt($this->password)));
             
             
-            $sth = $this->db->prepare("INSERT INTO hotels
+            $sth = $this->db->prepare("INSERT INTO travelOperators
                      VALUES (:loginId,:travelOperatorName,:travelOperatorAddress)");
             $sth->execute(array(':loginId'=>$this->loginId,
                  ':travelOperatorName'=>$this->travelOperatorName,

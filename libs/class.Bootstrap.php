@@ -75,10 +75,11 @@ class Bootstrap
         }
         else if(Session::get(LOGGED_IN) == TRUE)
         {
-            $url = 'dashboard';
+            
             require 'Interface/class.UserInterface.php';
             Session::set(USER,new UserInterface());
             //echo Session::get(USER)->getName()."Veevevevev";
+            $url = 'dashboard/get'.ucfirst(Session::get(USER)->getUserType()).'Dashboard';
             return $url;
         }
         else

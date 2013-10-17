@@ -85,7 +85,7 @@ class RegisterController extends BaseController
         $this->register();
         $this->acceptTravelOperatorName();
         $this->acceptTravelOperatorAddress();
-        $registration = $this->entity->registeTravelOperator();
+        $registration = $this->entity->registerTravelOperator();
         $this->completeRegistration($registration);
     }
     

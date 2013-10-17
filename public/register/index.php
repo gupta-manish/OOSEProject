@@ -58,7 +58,7 @@
     </form>
 </div>
 <div class="tab-pane fade" id="travelOperators">
-    <form action="<?php echo BASE_URL;?>register/travellerOperatorRegistrationValidation" method="post">
+    <form action="<?php echo BASE_URL;?>register/travelOperatorRegistrationValidation" method="post">
         <label>Login Id :</label>
         <input type="text" name="loginId" required>
         <br>
