@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -62,7 +63,7 @@
                         </ul>
                         <?php if(Session::get(LOGGED_IN) == TRUE): ?>
                             <ul class="nav pull-right">
-                                <li><a href="<?php echo BASE_URL?>"><?php echo Session::get(USER)->getName();?></a></li>
+                                <li><a href="<?php echo BASE_URL?>"><?php echo getUserName();?></a></li>
                                 <li><a href="<?php echo BASE_URL; ?>login/logOut" >Log Out</a></li>
                             </ul>
                         <?php else: ?>

@@ -12,17 +12,19 @@ class BaseController {
 
     function __construct($name) 
     {
+       // echo $name;
         $this->pageName = $name;
         $this->loadEntity();
         $this->loadInterface();
     }
+
 
     function loadEntity()
     {
         $filename = 'entities/class.'.ucfirst($this->pageName).'Entity.php';
         if(file_exists($filename))
         {
-            require $filename;
+            require_once $filename;
             $entityname = ucfirst($this->pageName).'Entity';
             
             $this->entity = new $entityname();
@@ -34,7 +36,7 @@ class BaseController {
         $filename = 'interface/class.'.ucfirst($this->pageName).'Interface.php';
         if(file_exists($filename))
         {
-            require $filename;
+            require_once $filename;
             $interfacename = ucfirst($this->pageName).'Interface';
             
             $this->interface = new $interfacename();

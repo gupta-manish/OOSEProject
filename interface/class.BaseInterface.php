@@ -8,9 +8,9 @@ class BaseInterface
     
     public function render($name)
     {
-        require '/public/header.php';
-        require '/public/'.$name.'/index.php';
-        require '/public/footer.php';
+        require_once '/public/header.php';
+        require_once '/public/'.$name.'/index.php';
+        require_once '/public/footer.php';
     }
 }
 ?>

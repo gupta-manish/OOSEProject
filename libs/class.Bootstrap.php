@@ -19,7 +19,7 @@ class Bootstrap
        // echo "Controller Path -> ".$con_path."<br>"; 
         if(file_exists($con_path))
         {
-            require $con_path;
+            require_once $con_path;
             $con_name = $this->getControllerName($url);
         }
         else
@@ -28,7 +28,7 @@ class Bootstrap
             $this->giveError();
             return;
         } 
-       // echo "Controller Name -> ".$con_name;
+       // echo "Controller Name -> ".$con_name.'<br>';
         
         $con = new $con_name(); 
         if(isset($url[1]))
@@ -37,10 +37,17 @@ class Bootstrap
             
             if(method_exists($con,$con_func))
             {
-               // echo $con_name."->".$con_func."()";
-                $con->$con_func();
+               if(isset($url[2]))                   
+               {
+                   $con->$con_func($url[2]);
+               }
+               else
+               {
+                   $con->$con_func();
+               }
             }
         }
+        //echo $con->pageName;
         $con->interface->render($con->pageName);
         
     }
@@ -59,7 +66,7 @@ class Bootstrap
     
     private function bootErrorController()
     {
-        require 'controllers/class.ErrorController.php';
+        require_once 'controllers/class.ErrorController.php';
     }
     
     private function getUrl()
@@ -69,17 +76,13 @@ class Bootstrap
             $url = rtrim($_GET['url'],'/');
             if(Session::get(LOGGED_IN) == TRUE && ($url==='register'||$url==='login'))
             {
-                $url = 'dashboard';
+                 $url = 'dashboard/get'.ucfirst(getUserType()).'Dashboard';
             }
             return $url;
         }
         else if(Session::get(LOGGED_IN) == TRUE)
-        {
-            
-            require 'Interface/class.UserInterface.php';
-            Session::set(USER,new UserInterface());
-            //echo Session::get(USER)->getName()."Veevevevev";
-            $url = 'dashboard/get'.ucfirst(Session::get(USER)->getUserType()).'Dashboard';
+        {           
+            $url = 'dashboard/get'.ucfirst(getUserType()).'Dashboard';
             return $url;
         }
         else

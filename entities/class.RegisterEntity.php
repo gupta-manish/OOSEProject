@@ -22,43 +22,44 @@ class RegisterEntity extends BaseEntity
     public function registerTraveller()
     {
         $sth = $this->db->prepare("SELECT * 
-                                    FROM users
-                                    WHERE loginId = :loginId");
+                                    FROM travellers
+                                    WHERE travellerId = :loginId");
         
+        $sth2 = $this->db->prepare("SELECT * 
+                                    FROM hotels
+                                    WHERE hotelId = :loginId");
+        
+        $sth3 = $this->db->prepare("SELECT * 
+                                    FROM traveloperators
+                                    WHERE travelOpId = :loginId");
         $sth->execute(array(':loginId'=>$this->loginId));
+        $sth2->execute(array(':loginId'=>$this->loginId));
+        $sth3->execute(array(':loginId'=>$this->loginId));
         
-        if($sth->rowCount()==1)
+        if($sth->rowCount()==1 || $sth2->rowCount()==1 || $sth3->rowCount()==1)
         {
             return 0;
         }
         else 
         {
-            $sth = $this->db->prepare("INSERT INTO users
-                     VALUES (:loginId,:emailId,:pass,'travellers')");
-            $sth->execute(array(':loginId'=>$this->loginId,
-                ':emailId'=>$this->email,
-                 ':pass'=>$this->encrypt($this->password)));
-            
-            
             $sth = $this->db->prepare("INSERT INTO travellers
-                     VALUES (:loginId,:firstName,:lastName)");
+                     VALUES (:loginId,:pass,:emailId,:firstName,:lastName,:userType)");
             $sth->execute(array(':loginId'=>$this->loginId,
+                ':pass'=>$this->encrypt($this->password),
+                ':emailId'=>$this->email,
                  ':firstName'=>$this->firstName,
-                 ':lastName'=>$this->lastName));
+                 ':lastName'=>$this->lastName,
+                ':userType'=>'traveller'));
             
             
             $sth = $this->db->prepare("SELECT * 
-                                FROM users
-                                WHERE loginId = :loginId AND password = :pass");
-        
-        $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
-        $this->userLoginData = $sth->fetch();
-            
-            $sth2 = $this->db->prepare("SELECT * 
                                 FROM travellers
-                                WHERE loginId = :loginId");
-            $sth2->execute(array(':loginId'=>$this->loginId));
-            $this->userData = $sth2->fetch();
+                                WHERE travellerId = :loginId AND password = :pass");
+        
+            $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
+            
+            
+            $this->userData = $sth->fetch();
             return 1;
         }
     }
@@ -66,87 +67,89 @@ class RegisterEntity extends BaseEntity
     public function registerHotel()
     {
         $sth = $this->db->prepare("SELECT * 
-                                    FROM users
-                                    WHERE loginId = :loginId");
+                                    FROM travellers
+                                    WHERE travellerId = :loginId");
         
+        $sth2 = $this->db->prepare("SELECT * 
+                                    FROM hotels
+                                    WHERE hotelId = :loginId");
+        
+        $sth3 = $this->db->prepare("SELECT * 
+                                    FROM traveloperators
+                                    WHERE travelOpId = :loginId");
         $sth->execute(array(':loginId'=>$this->loginId));
+        $sth2->execute(array(':loginId'=>$this->loginId));
+        $sth3->execute(array(':loginId'=>$this->loginId));
         
-        if($sth->rowCount()==1)
+        if($sth->rowCount()==1 || $sth2->rowCount()==1 || $sth3->rowCount()==1)
         {
             return 0;
         }
         else 
         {
-            $sth = $this->db->prepare("INSERT INTO users
-                     VALUES (:loginId,:emailId,:pass,'hotels')");
-            $sth->execute(array(':loginId'=>$this->loginId,
-                ':emailId'=>$this->email,
-                 ':pass'=>$this->encrypt($this->password)));
-            
-            
             $sth = $this->db->prepare("INSERT INTO hotels
-                     VALUES (:loginId,:hotelName,:hotelAddress)");
+                     VALUES (:loginId,:pass,:emailId,:hotelName,:hotelAddress,:userType)");
             $sth->execute(array(':loginId'=>$this->loginId,
+                ':pass'=>$this->encrypt($this->password),
+                ':emailId'=>$this->email,
                  ':hotelName'=>$this->hotelName,
-                 ':hotelAddress'=>$this->hotelAddress));
+                 ':hotelAddress'=>$this->hotelAddress,
+                ':userType'=>'hotel'));
             
             
             $sth = $this->db->prepare("SELECT * 
-                                FROM users
-                                WHERE loginId = :loginId AND password = :pass");
-        
-        $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
-        $this->userLoginData = $sth->fetch();
-            
-            $sth2 = $this->db->prepare("SELECT * 
                                 FROM hotels
-                                WHERE loginId = :loginId");
-            $sth2->execute(array(':loginId'=>$this->loginId));
-            $this->userData = $sth2->fetch();
+                                WHERE hotelId = :loginId AND password = :pass");
+        
+            $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
+            
+            
+            $this->userData = $sth->fetch();
             return 1;
         }
     }
     
     public function registerTravelOperator()
     {
-         $sth = $this->db->prepare("SELECT * 
-                                    FROM users
-                                    WHERE loginId = :loginId");
+        $sth = $this->db->prepare("SELECT * 
+                                    FROM travellers
+                                    WHERE travellerId = :loginId");
         
+        $sth2 = $this->db->prepare("SELECT * 
+                                    FROM hotels
+                                    WHERE hotelId = :loginId");
+        
+        $sth3 = $this->db->prepare("SELECT * 
+                                    FROM traveloperators
+                                    WHERE travelOpId = :loginId");
         $sth->execute(array(':loginId'=>$this->loginId));
+        $sth2->execute(array(':loginId'=>$this->loginId));
+        $sth3->execute(array(':loginId'=>$this->loginId));
         
-        if($sth->rowCount()==1)
+        if($sth->rowCount()==1 || $sth2->rowCount()==1 || $sth3->rowCount()==1)
         {
             return 0;
         }
         else 
         {
-            $sth = $this->db->prepare("INSERT INTO users
-                     VALUES (:loginId,:emailId,:pass,'travelOperators')");
+            $sth = $this->db->prepare("INSERT INTO traveloperators
+                     VALUES (:loginId,:pass,:emailId,:travelOpName,:travelOpAddress,:userType)");
             $sth->execute(array(':loginId'=>$this->loginId,
+                ':pass'=>$this->encrypt($this->password),
                 ':emailId'=>$this->email,
-                 ':pass'=>$this->encrypt($this->password)));
-            
-            
-            $sth = $this->db->prepare("INSERT INTO travelOperators
-                     VALUES (:loginId,:travelOperatorName,:travelOperatorAddress)");
-            $sth->execute(array(':loginId'=>$this->loginId,
-                 ':travelOperatorName'=>$this->travelOperatorName,
-                 ':travelOperatorAddress'=>$this->travelOperatorAddress));
+                 ':travelOpName'=>$this->travelOperatorName,
+                 ':travelOpAddress'=>$this->travelOperatorAddress,
+                ':userType'=>'travelOperator'));
             
             
             $sth = $this->db->prepare("SELECT * 
-                                FROM users
-                                WHERE loginId = :loginId AND password = :pass");
+                                FROM traveloperators
+                                WHERE travelOpId = :loginId AND password = :pass");
         
-        $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
-        $this->userLoginData = $sth->fetch();
+            $sth->execute(array(':loginId'=>$this->loginId,':pass'=>$this->encrypt($this->password)));
             
-            $sth2 = $this->db->prepare("SELECT * 
-                                FROM travelOperators
-                                WHERE loginId = :loginId");
-            $sth2->execute(array(':loginId'=>$this->loginId));
-            $this->userData = $sth2->fetch();
+            
+            $this->userData = $sth->fetch();
             return 1;
         }
     }

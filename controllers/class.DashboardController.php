@@ -7,7 +7,7 @@ class DashboardController extends BaseController
         parent::__construct("dashboard");
     }
     
-    function getTravellersDashboard()
+    function getTravellerDashboard()
     {
        // echo "veevevev";
         $this->pageName = 'dashboard/traveller';
@@ -15,18 +15,24 @@ class DashboardController extends BaseController
         $this->loadInterface();
     }
     
-    function getHotelsDashboard()
+    function getHotelDashboard()
     {
         $this->pageName = 'dashboard/hotel';
         $this->loadEntity();
         $this->loadInterface();
+        require_once '/class.OfferController.php';
+        $offer = new OfferController;
+        $offer->getSearchWithIdResult();
     }
     
-    function getTravelOperatorsDashboard()
+    function getTravelOperatorDashboard()
     {
         $this->pageName = 'dashboard/travelOperator';
         $this->loadEntity();
         $this->loadInterface();
+        require_once '/class.OfferController.php';
+        $offer = new OfferController;
+        $offer->getSearchWithIdResult();
     }
 }
 ?>

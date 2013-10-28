@@ -9,9 +9,13 @@ class DashboardInterface extends BaseInterface
     
     public function render($name)
     {
-        require '/public/header.php';
-        require '/public/'.$name.'.php';
-        require '/public/footer.php';
+        require_once '/public/header.php';
+        require_once '/public/'.$name.'.php';
+        if(getUserType()==='traveller' || getUserType()==='hotel')
+        {
+            require_once '/public/offers/index.php';
+        }
+        require_once '/public/footer.php';
     }
 }
 ?>

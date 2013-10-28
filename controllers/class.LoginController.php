@@ -26,7 +26,6 @@ class LoginController extends BaseController
         {
             Session::start();
             Session::set(LOGGED_IN,TRUE);
-            Session::set(USER_LOGIN_DATA,$this->entity->userLoginData);
             Session::set(USER_DATA,$this->entity->userData);
             header('Location:'.BASE_URL);
         }
