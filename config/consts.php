@@ -12,6 +12,7 @@ define('USER_DATA','userdata');
 define('USER_LOGIN_DATA','userlogindata');
 define('USER','user');
 define('OFFERS','offers');
-
+define('HOTELS','hotels');
+define('TOPS','travelOperators');
 
 ?>

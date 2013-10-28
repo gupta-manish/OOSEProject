@@ -5,10 +5,23 @@ class OfferController extends BaseController
     function __construct() 
     {
         parent::__construct("offer");
-        $this->loadInterface();
+        $this->loadCreateOfferInterface();
     }
     
-    function loadInterface()
+    function loadSearchOfferInterface()
+    {
+        $filename = 'interface/class.'.ucfirst($this->pageName).'Interface.php';
+        if(file_exists($filename))
+        {
+            require_once $filename;
+            $interfacename = ucfirst($this->pageName).'Interface';
+            
+            $this->interface = new $interfacename();
+            //$this->interface->render($this->pageName);
+        }
+    }
+    
+    function loadCreateOfferInterface()
     {
         $filename = 'interface/class.Create'.ucfirst($this->pageName).'Interface.php';
         if(file_exists($filename))
@@ -73,7 +86,18 @@ class OfferController extends BaseController
         Session::set(OFFERS, $offers);        
     }
     
-  
+    public function searchAllOffers()
+    {
+        $this->loadSearchOfferInterface();
+        $offers = $this->entity->getAllOffers();
+        require_once '/class.HotelController.php';
+        $hotels = new HotelController();
+        require_once '/class.TravelOperatorController.php';
+        $top = new TravelOperatorController();
+        Session::set(OFFERS, $offers);
+        Session::set(HOTELS, $hotels);
+        Session::set(TOPS, $top);
+    }
     
     
     

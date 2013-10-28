@@ -58,7 +58,7 @@
                             <li><a href="<?php echo BASE_URL?>">Home</a></li>
                             <li><a href="<?php echo BASE_URL?>about">About</a></li>
                             <li><a href="<?php echo BASE_URL?>packages">Packages</a></li>
-                            <li><a href="<?php echo BASE_URL?>offers">Offers</a></li>
+                            <li><a href="<?php echo BASE_URL?>offer/searchAllOffers">Offers</a></li>
                           
                         </ul>
                         <?php if(Session::get(LOGGED_IN) == TRUE): ?>

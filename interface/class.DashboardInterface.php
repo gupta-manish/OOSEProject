@@ -11,7 +11,7 @@ class DashboardInterface extends BaseInterface
     {
         require_once '/public/header.php';
         require_once '/public/'.$name.'.php';
-        if(getUserType()==='traveller' || getUserType()==='hotel')
+        if(getUserType()==='travelOperator' || getUserType()==='hotel')
         {
             require_once '/public/offers/index.php';
         }

@@ -59,5 +59,14 @@ class OfferEntity extends BaseEntity
             return $offers;
         }
     }
+    
+    public function getAllOffers()
+    {
+        $sth1 = $this->db->prepare("SELECT * FROM hoteloffers");
+            $sth1->execute(array());
+           $sth2 = $this->db->prepare("SELECT * FROM traveloffers");
+            $sth2->execute(array());  
+            return array('hotelOffers'=>$sth1,'travelOffers'=>$sth2);
+    }
 }
 ?>
